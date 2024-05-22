@@ -1,0 +1,381 @@
+.logo{
+  height: 70px;
+  width: auto;
+}
+.section{
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.main-heading{
+  color: red;
+}
+.card-deck{
+  display: flex;
+  flex: 1;
+  margin-top: 20px;
+
+}
+.card{
+  display: flex;
+  flex: 1;
+  margin-left: 10px;
+
+}
+.link-footer a {
+  text-decoration: none;
+  color: white;
+}
+.card-img{
+  height: 450px;
+  background-size: cover;
+
+}
+.loading{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.featured-rooms-center{
+  display: flex;
+  flex: 1;
+  margin-left: 150px;
+  justify-content: space-between;
+  margin-right: 150px;
+}
+
+.property{
+  margin-bottom: 50px;
+}
+.img-container:hover{
+  background:gainsboro;
+  color: green;
+  transform: scale(1.05); /* set to 1.05, which means the element will be scaled to 105% of its original size, when hover*/
+}
+.property{
+  height: 500px;
+  width: 450px;
+}
+
+.property img{
+  width: 100%;
+  height: 70%;
+}
+
+.propertiesList{
+  padding-left: 150px;
+  /*margin-bottom: 100px;*/
+}
+.roomsList-center{
+  padding-top: 100px;
+}
+
+.filter-container{
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+.FlexClass{
+  justify-content: center;
+  align-items: center;
+  marginRight: '1';
+}
+.home-container{
+  background-color: lightsteelblue;
+}
+.featured-rooms-h4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+
+.navbar-light{
+  background-color: black;
+  top: 0;
+}
+.favourite{
+  font-weight: 50;
+  font-size: 20px;
+}
+
+.full-width {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+.setWidth{
+  width: 100%;
+}
+.mainHero{
+  min-height: calc(100vh - 66px);
+  background-image: url("https://images.unsplash.com/photo-1542435503-956c469947f6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmxvZyUyMGNvdmVyfGVufDB8fDB8fHww");
+  display: flex;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 50px;
+  background-size: cover;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+
+}
+.button-spacing {
+  margin-right: 10px;
+}
+
+.banner{
+  display: inline-block;
+  color: blanchedalmond;
+  background: rgba(0,0,0,0.5);
+  padding:5px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.banner div{
+  width: 5rem;
+  height: 20px;
+
+}
+.additionalColor{
+  /*background:linear-gradient(rgba(0, 0, 0,1),rgba(0, 0, 0,0.7))*/
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7));
+}
+.iconSize{
+  font-size: 30px;
+}
+.serviceHeading{
+  border-radius: 15px;
+  border: 1px solid black;
+  background-color: lightsteelblue;
+}
+.main-heading{
+  color: green;
+}
+.card-img-top{
+  height: 300px;
+}
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  border: 1px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: lightsteelblue;
+  border-radius: 50px;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.form-group {
+  margin-right: 10px;
+}
+/*=========Contact form=======*/
+.contact-section{
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+.ContactInfo{
+  /*color: white;*/
+  max-width: 800px;
+  font-size: 20px;
+  line-height: 70px;
+  padding-left: 50px;
+
+
+}
+.propertyInfo{
+  border: 1px solid black;
+  border-radius: 15px;
+  width: auto;
+
+}
+.ContactInfo i{
+  font-size: 20px;
+  margin-right: 30px;
+}
+.formClass{
+  max-width: 700px;
+  /*width: 100%;*/
+  margin-right:  50px;
+}
+.ContactInfo, .formClass{
+
+  flex: 1;
+}
+.formInfo{
+  border-radius: 15px;
+
+}
+.formClass h2{
+  color: white;
+  text-align: center;
+  font-size: 35px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.formClass input:valid {
+  border-color: green;
+}
+
+.formClass input:invalid {
+  border-color: red;
+}
+textarea[name='message']{/*Attribute Selectors */
+  background: black;
+  color: white;
+  height: 50px;
+  border: none;
+  width: 80%;
+  border-radius: 8px;
+  resize:vertical;
+  padding: 15px;
+  font-size: 15px;
+  opacity: 0.9;
+  min-height: 200px;
+  max-height: 400px;
+  margin-bottom: 20px;
+}
+
+.formClass .text-box{
+  height: 20px;
+  padding: 15px;
+  color: white;
+  background: black;
+  border: none;
+  width: 80%;
+  font-size: 15px;
+  border-radius: 8px;
+  opacity: 0.9;
+  margin-bottom: 25px;
+
+}
+.contact .text-box:first-child{ /*Child combinator*/
+  margin-right: 15px;
+
+}
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.formClass .btn{
+  float: right;
+  background: orange;
+  color: white;
+  width: 120px;
+  height: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius:8px;
+  letter-spacing: 2px;
+  border: 1px solid black;
+  cursor: pointer;
+  transition-property: background;
+}
+.contact .btn:hover{
+  background: #D35400;
+}
+@media (max-width: 767px) {
+  /* Adjust styles for screens smaller than 768px wide */
+  .featuredListN {
+    flex: 0 0 100%
+  }
+}
+
+/* Additional styles for small screens (up to 576px) */
+@media (max-width: 576px) {
+  .featured-rooms-h4 {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+}
+
+
+@media (max-width: 576px) {
+  .row-cols-1 {
+    flex: 0 0 50%; /* Full width for small screens */
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Adjust styles for screens between 768px and 991px wide */
+  .propertiesList .col-md-4 {
+    flex: 0 0 50%; /* Make columns 50% width on medium screens */
+  }
+}
+
+@media screen and (max-width:820px){
+  .contact-section{
+    flex-direction:column;
+
+  }
+  .formClass h2{
+    font-size: 20px;
+  }
+  .formClass .text-box{
+    width: 100%;
+  }
+  .containerNew{
+    height: 150vh;
+  }
+  .footer{
+    height: 500px;
+  }
+  .services{
+    padding-bottom: 150px;
+  }
+  .containerNew {
+    margin-bottom: 500px;
+  }
+  .contact .text-box{
+    width: 60%;
+
+  }
+  .contact textarea{
+    width: 60%;
+  }
+  .info,.formClass{
+    margin: 30px 30px;
+    align-items: center;
+  }
+
+}
+
+.max-img-width {
+  max-width: 80%;
+  margin: auto;
+}
+.right{
+  right: 0;
+}
+.margin{
+  margin-bottom: 50px;
+}
+.locationMap{
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 50px;
+  display: grid;
+
+
+}
+
+
+
+
