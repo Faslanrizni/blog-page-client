@@ -3,6 +3,7 @@ import AxiosInstance from '../config/axiorsInstance';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import PostDetailsModal from './PostDetailsModel';
+import {storage} from '../config/Firebase'
 
 const Product = () => {
     const [posts, setPosts] = useState([]);
@@ -19,7 +20,7 @@ const Product = () => {
     const [expandedPostId, setExpandedPostId] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null);
 
-    const [detailsModalState, setDetailsModalState] = useState(false); 
+    const [detailsModalState, setDetailsModalState] = useState(false);
 
     const navigate = useNavigate();
 
@@ -27,14 +28,19 @@ const Product = () => {
         findAllPosts();
     }, []);
 
-    const handleFile = (event) => {
+    const handleFile = async (event) => {
         setImage(event.target.files[0]);
+
     };
 
     const findAllPosts = async () => {
         const response = await AxiosInstance.get('/posts/find-all?searchText=&page=1&size=10');
         setPosts(response.data);
+
     };
+    /*const uploadImage =async (fiel:File):Promise<string|null> => {
+
+    }*/
 
     const deleteProduct = async (id) => {
         await AxiosInstance.delete(`/posts/delete-by-id/${id}`);
@@ -43,7 +49,18 @@ const Product = () => {
     };
 
     const saveProduct = async () => {
-        let imageUrl = 'https://cdn.4imprint.com/qtz/homepage/categories/images21/drinkware0222.jpg';
+        let imageUrl = '';
+        if (image) {
+            try {
+                const storageRef = storage.ref();
+                const imageRef = storageRef.child(`images/${Math.random() + '-' + image.name}`);
+                const snapshot = await imageRef.put(image);
+                imageUrl = await snapshot.ref.getDownloadURL(); // Correct method name
+            } catch (e) {
+                console.log("Image upload error: ", e);
+            }
+        }
+
         try {
             await AxiosInstance.post('/posts/create', { title, content, image: imageUrl });
             setTitle('');
@@ -53,6 +70,7 @@ const Product = () => {
             console.log(e);
         }
     };
+
 
     const loadModal = async (id) => {
         const response = await AxiosInstance.get('/posts/find-by-id/' + id);

@@ -1,13 +1,45 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 
 import Footer from '../components/Footer'
 
 import MainBackground from "../components/MainBackground.jsx";
 import Banner from "../components/Banner.jsx";
-
+import AxiosInstance from  '../config/axiorsInstance'
+import PostDetailsModalHome from '../components/PostDetailModelHome';
 
 export default function Home(){
+    const [posts, setPosts] = useState([]);
+    const [expandedPostId, setExpandedPostId] = useState(null);
+    const [detailsModalState, setDetailsModalState] = useState(false);
+    const [selectedPost, setSelectedPost] = useState(null);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await AxiosInstance.get('/posts/find-all?searchText=&page=1&size=10');
+                setPosts(response.data);
+            } catch (error) {
+                console.error("Error fetching posts", error);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+    const toggleExpandPost = (id) => {
+        setExpandedPostId(expandedPostId === id ? null : id);
+    };
+
+    const openDetailsModal = (post) => {
+        setSelectedPost(post);
+        setDetailsModalState(true);
+    };
+    const loadModal = async (id) => {
+        const response = await AxiosInstance.get('/posts/find-by-id/' + id);
+        const post = response.data;
+        setSelectedPostId(post._id);
+        setModalState(true);
+    };
     return(
         <div>
             <MainBackground main={"mainHero"} >
@@ -53,8 +85,32 @@ export default function Home(){
                         </div>
 
                     </div>
+                    <div className="row">
+                        {posts.map((post) => (
+                            <div key={post._id} className="col-md-4 mb-4">
+                                <div className="card" onClick={() => openDetailsModal(post)}>
+                                    <img src={post.image} className="card-img-top" alt={post.title} />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{post.title}</h5>
+                                        {expandedPostId === post._id && (
+                                            <>
+                                                <p className="card-text">{post.content}</p>
+
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
+            <PostDetailsModalHome
+                show={detailsModalState}
+                onHide={() => setDetailsModalState(false)}
+                post={selectedPost}
+
+            />
 
             <Footer />
 
