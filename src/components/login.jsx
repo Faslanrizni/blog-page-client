@@ -11,9 +11,17 @@ export default function Login() {
     const login = async () => {
         try {
             const response = await AxiosInstance.post('/users/login', { email, password });
+            console.log(response.data)
             setErrorMessage('');
     
             navigate('/product');
+
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate()+2)
+
+            const cookieValue ='';
+            document.cookie =cookieValue;
+
         } catch (error) {
             setErrorMessage('Invalid email or password. Please try again.');
             console.error(error);
@@ -30,7 +38,7 @@ export default function Login() {
             }}
         >
             <div className="container position-relative p-4 bg-white bg-opacity-90 shadow-lg mb-2">
-                
+
                 <div className="text-center mb-4"></div>
                 <h1 className="h3 fw-bold text-center text-primary mb-4">Login </h1>
                 <div className="row">

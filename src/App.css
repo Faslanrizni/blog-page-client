@@ -127,6 +127,51 @@
 .button-spacing {
   margin-right: 10px;
 }
+.button-spacing {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.card-body {
+  position: relative;
+}
+/* styles.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+textarea {
+  resize: none;
+}
+
+.card-buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  display: flex;
+  justify-content: space-between;
+}
+
 
 .banner{
   display: inline-block;

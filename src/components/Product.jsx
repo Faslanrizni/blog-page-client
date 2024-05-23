@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AxiosInstance from '../config/axiorsInstance';
-import { storage } from '../config/Firebase';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import PostDetailsModal from './PostDetailsModel';
 
 const Product = () => {
     const [posts, setPosts] = useState([]);
@@ -16,7 +16,10 @@ const Product = () => {
     const [updateContent, setUpdateContent] = useState('');
     const [updateImage, setUpdateImage] = useState(null);
 
-    const [expandedPostId, setExpandedPostId] = useState(null); // State to track expanded post
+    const [expandedPostId, setExpandedPostId] = useState(null);
+    const [selectedPost, setSelectedPost] = useState(null);
+
+    const [detailsModalState, setDetailsModalState] = useState(false); 
 
     const navigate = useNavigate();
 
@@ -36,6 +39,7 @@ const Product = () => {
     const deleteProduct = async (id) => {
         await AxiosInstance.delete(`/posts/delete-by-id/${id}`);
         findAllPosts();
+        setDetailsModalState(false);
     };
 
     const saveProduct = async () => {
@@ -79,6 +83,11 @@ const Product = () => {
         setExpandedPostId(expandedPostId === id ? null : id);
     };
 
+    const openDetailsModal = (post) => {
+        setSelectedPost(post);
+        setDetailsModalState(true);
+    };
+
     return (
         <>
             <br />
@@ -111,11 +120,10 @@ const Product = () => {
                 </div>
                 <hr />
 
-
                 <div className="row">
                     {posts.map((post) => (
                         <div key={post._id} className="col-md-4 mb-4">
-                            <div className="card" onClick={() => toggleExpandPost(post._id)}>
+                            <div className="card" onClick={() => openDetailsModal(post)}>
                                 <img src={post.image} className="card-img-top" alt={post.title} />
                                 <div className="card-body">
                                     <h5 className="card-title">{post.title}</h5>
@@ -123,7 +131,10 @@ const Product = () => {
                                         <>
                                             <p className="card-text">{post.content}</p>
 
-                                            <button className='btn btn-outline-success btn-sm ml-2 button-spacing' onClick={() => loadModal(post._id)}>Update  </button>
+                                            <button className='btn btn-outline-success btn-sm ml-2 button-spacing' onClick={(e) => {
+                                                e.stopPropagation();
+                                                loadModal(post._id);
+                                            }}>Update</button>
                                             <button className='btn btn-outline-danger btn-sm ml-2' onClick={(e) => {
                                                 e.stopPropagation();
                                                 if (confirm('Are you sure?')) {
@@ -172,6 +183,21 @@ const Product = () => {
                     </div>
                 </div>
             </Modal>
+
+            <PostDetailsModal
+                show={detailsModalState}
+                onHide={() => setDetailsModalState(false)}
+                post={selectedPost}
+                onEdit={(id) => {
+                    setDetailsModalState(false);
+                    loadModal(id);
+                }}
+                onDelete={(id) => {
+                    if (confirm('Are you sure?')) {
+                        deleteProduct(id);
+                    }
+                }}
+            />
         </>
     );
 };
