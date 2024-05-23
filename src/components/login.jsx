@@ -11,7 +11,7 @@ export default function Login() {
     const login = async () => {
         try {
             const response = await AxiosInstance.post('/users/login', { email, password });
-            console.log(response.data)
+
             setErrorMessage('');
     
             navigate('/product');
@@ -19,9 +19,10 @@ export default function Login() {
             const expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate()+2)
 
-            const cookieValue ='';
+            const cookieValue =encodeURIComponent('token')+'='
+                +encodeURIComponent(response.data)+'; expires='+expirationDate.toUTCString()+'; path=/';
             document.cookie =cookieValue;
-
+            console.log(response.data)
         } catch (error) {
             setErrorMessage('Invalid email or password. Please try again.');
             console.error(error);
