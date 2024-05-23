@@ -16,6 +16,8 @@ export default function Login() {
     
             navigate('/product');
 
+            /*=============== token verifire ===================*/
+
             const expirationDate = new Date();
             expirationDate.setDate(expirationDate.getDate()+2)
 
@@ -23,6 +25,7 @@ export default function Login() {
                 +encodeURIComponent(response.data)+'; expires='+expirationDate.toUTCString()+'; path=/';
             document.cookie =cookieValue;
             console.log(response.data)
+            /*================= token verifire ==================*/
         } catch (error) {
             setErrorMessage('Invalid email or password. Please try again.');
             console.error(error);
