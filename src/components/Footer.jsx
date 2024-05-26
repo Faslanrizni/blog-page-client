@@ -20,7 +20,7 @@ const Footer = () => {
                         <h6> Quick Links</h6>
                         <div className={'link-footer'}>
                             <div><Link to={'/'}>Home</Link></div>
-                            <div><Link to={'/'}>Properties</Link></div>
+                            <div><Link to={'/'}>Post</Link></div>
                             <div><Link to={'/'}>Favorite</Link></div>
                             <div><Link to={'/'}>Blog</Link></div>
                         </div>

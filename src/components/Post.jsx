@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import PostDetailsModal from './PostDetailsModel';
 import {storage} from '../config/Firebase'
 
-const Product = () => {
+const Post = () => {
     const [posts, setPosts] = useState([]);
     const [image, setImage] = useState(null);
     const [title, setTitle] = useState('');
@@ -55,7 +55,7 @@ const Product = () => {
                 const storageRef = storage.ref();
                 const imageRef = storageRef.child(`images/${Math.random() + '-' + image.name}`);
                 const snapshot = await imageRef.put(image);
-                imageUrl = await snapshot.ref.getDownloadURL(); // Correct method name
+                imageUrl = await snapshot.ref.getDownloadURL(); 
             } catch (e) {
                 console.log("Image upload error: ", e);
             }
@@ -83,12 +83,23 @@ const Product = () => {
     };
 
     const updatePost = async () => {
-        let imageUrl = 'https://cdn.4imprint.com/qtz/homepage/categories/images21/drinkware0222.jpg';
+        // let imageUrl = 'https://cdn.4imprint.com/qtz/homepage/categories/images21/drinkware0222.jpg';
+        let imageUrl = '';
+        if (image) {
+            try {
+                const storageRef = storage.ref();
+                const imageRef = storageRef.child(`images/${Math.random() + '-' + image.name}`);
+                const snapshot = await imageRef.put(image);
+                imageUrl = await snapshot.ref.getDownloadURL();
+            } catch (e) {
+                console.log("Image upload error: ", e);
+            }
+        }
         try {
             await AxiosInstance.put('/posts/update/' + selectedPostId, {
                 content: updateContent,
                 title: updateTitle,
-                image: imageUrl
+                // imageUrl = await snapshot.ref.getDownloadURL();
             });
             setModalState(false);
             findAllPosts();
@@ -220,4 +231,4 @@ const Product = () => {
     );
 };
 
-export default Product;
+export default Post;
